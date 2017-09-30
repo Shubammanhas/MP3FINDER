@@ -1,0 +1,52 @@
+/*
+Author - ShubamVI1
+Date- 29/09/17
+Time- 9:30:20
+*/
+#include <iostream>
+#include <dirent.h>
+#include <string.h>
+#include <vector>
+#include <stdio.h>
+#include <string>
+using namespace std;
+class Mp3Finder 
+{
+public:
+    string path;
+    struct dirent *de;
+    string t;
+    int length;
+
+    void crawl(string path)
+        {
+            DIR *dr = opendir(path.c_str());
+            if (dr == NULL)
+                {
+                    printf("Could not open current directory" );
+                    return; // or continue;
+ }
+while ((de = readdir(dr)) != NULL)
+  {
+    if(strcmp(de->d_name,".")==0 || strcmp(de->d_name,"..")==0 || de->d_name[0]=='.')continue;
+      if(de->d_type==DT_DIR)
+      { // linux command
+         t=de->d_name;
+         path+="/"+ 
+ }
+   {
+                            length=strlen(de->d_name);
+   if(de->d_name[length-1]=='3' && de->d_name[length-2]=='p' && de->d_name[length-3]=='m')
+                            printf("%s\n", de->d_name);
+    }
+   }
+  }   
+};
+int main(void)
+{
+printf("Enter path of the file \n");
+Mp3Finder mp3; //mp3 is the object
+getline(cin,mp3.path);
+mp3.crawl(mp3.path);
+return 0;
+}
